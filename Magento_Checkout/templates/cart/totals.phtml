@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Shopping cart totals template
+ * @var $block \Magento\Checkout\Block\Cart\Totals
+ 
+ */
+$blockSavings = $block->getLayout()->createBlock('Sanrai\TotalSavings\Block\Savings');
+?>
+<div id="cart-totals" class="cart-totals" data-bind="scope:'block-totals'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+        {
+                "#cart-totals": {
+                    "Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>
+                }
+            }
+    </script>
+</div>
+
+<div class="custom-total-savings" id="cart-summary-savings" style="display:none;">
+    <span><?php echo __('Your Total Savings '); ?></span>
+    <strong style="color:#a40000;font-weight:bold"><span id="totalSavings"><?php echo $blockSavings->getTotalSavings(); ?></span></strong>
+</div>
+
+<script>
+    const myTimeout = setTimeout(cartsummarysavings, 5000);
+    function cartsummarysavings() {
+        document.getElementById("cart-summary-savings").style.display = "flex"
+    }
+
+</script>
